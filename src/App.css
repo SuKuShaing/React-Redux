@@ -3,4 +3,9 @@
 
 .App {
     margin-top: 3rem;
+
+    & img {
+        margin-bottom: 3rem;
+    }
 }
+
