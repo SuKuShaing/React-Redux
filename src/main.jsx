@@ -5,12 +5,16 @@ import { Provider } from "react-redux";
 import { legacy_createStore as createStore } from "redux";
 import App from "./App.jsx";
 
-const store = createStore(pokemonsReducer); // crea el store de redux
-
+const store = createStore(
+	pokemonsReducer,
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+); // crea el store de redux
 
 createRoot(document.getElementById("root")).render(
 	<StrictMode>
-		<Provider store={store}>  {/* el provider de redux permite que los componentes de react accedan al store */}
+		<Provider store={store}>
+			{" "}
+			{/* el provider de redux permite que los componentes de react accedan al store */}
 			<App />
 		</Provider>
 	</StrictMode>
