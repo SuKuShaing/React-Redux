@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Col } from "antd";
 import Searcher from "./components/Searcher";
 import PokemonList from "./components/PokemonList";
@@ -7,15 +7,18 @@ import logo from "./statics/logo.svg";
 
 import "./App.css";
 import { getPokemons } from "./api/index.js";
-import { setPokemons as setPokemonsActions } from "./actions/index.js";
+import { setPokemons  } from "./actions/index.js";
 
-function App({ pokemons, setPokemons }) {
+function App() {
 	// const [pokemons, setPokemons] = useState([]);
+
+	const pokemons = useSelector((state) => state.pokemons); // accede al estado de redux, en este caso a los pokemons
+	const dispatch = useDispatch(); // permite despachar acciones a redux
 
 	useEffect(() => {
 		const fetchPokemons = async () => {
 			const pokemonsRes = await getPokemons();
-			setPokemons(pokemonsRes);
+			dispatch(setPokemons(pokemonsRes));
 		};
 
 		fetchPokemons();
@@ -34,18 +37,4 @@ function App({ pokemons, setPokemons }) {
 	);
 }
 
-// Redux
-// Estados
-const mapStateToProps = (state) => ({  // es qué parte del estado global quieres usar como props (pokemons).
-	pokemons: state.pokemons, // que parte del estado global quieres usar como props
-});
-
-// Acciones que son como los manejadores de estados
-const mapDispatchToProps = (dispatch) => ({  // es qué acciones puedes disparar desde el componente (setPokemons).
-	setPokemons: (payload) => dispatch(setPokemonsActions(payload)),
-});
-
-export default connect(  // conecta react con redux
-	mapStateToProps,
-	mapDispatchToProps
-)(App);
+export default App;
