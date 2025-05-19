@@ -6,7 +6,7 @@ import PokemonList from "./components/PokemonList";
 import logo from "./statics/logo.svg";
 
 import "./App.css";
-import { getPokemons } from "./api/index.js";
+import { getPokemonDetails, getPokemons } from "./api/index.js";
 import { setPokemons  } from "./actions/index.js";
 
 function App() {
@@ -18,7 +18,10 @@ function App() {
 	useEffect(() => {
 		const fetchPokemons = async () => {
 			const pokemonsRes = await getPokemons();
-			dispatch(setPokemons(pokemonsRes));
+			const pokemonDetails = await Promise.all( // Promise.all([]) permite esperar a que todas las promesas que se le envían, se resuelvan
+				pokemonsRes.map(pokemon => getPokemonDetails(pokemon))
+			);
+			dispatch(setPokemons(pokemonDetails)); // despacha la acción setPokemons con los pokemons obtenidos
 		};
 
 		fetchPokemons();

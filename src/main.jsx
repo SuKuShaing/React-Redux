@@ -13,7 +13,7 @@ import App from "./App.jsx";
 // con un enhancer, podemos añadir middlewares al store, puesto que extiende o modifica el comportamiento del store
 const composedEnhancer = compose(
 	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), // permite usar la extensión de redux devtools en el navegador
-	applyMiddleware(logger, featuring) // el middleware logger que hemos creado
+	applyMiddleware(logger) // el middleware logger que hemos creado
 );
 
 const store = createStore(

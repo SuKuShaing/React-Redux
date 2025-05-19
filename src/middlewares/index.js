@@ -11,6 +11,7 @@ export const logger = (store) => (next) => (action) => {
     return next(action);
 };
 
+// el middleware featuring añade un nuevo pokemon (llamado "editado") al principio de la lista de pokemons
 export const featuring = (store) => (next) => (actionInfo) => {
     const featured = [{ name: "Editado"}, ...actionInfo.action.payload];
     const updatedActionInfo = {...actionInfo, action: {...actionInfo.action, payload: featured}};

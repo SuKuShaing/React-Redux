@@ -2,7 +2,7 @@ import PokemonCard from "./PokemonCard";
 import "./PokemonList.css";
 
 const PokemonList = ({ pokemons = Array(10).fill("") }) => {
-	console.log("🚀 ~ PokemonList ~ pokemons:", pokemons);
+	// console.log("🚀 ~ PokemonList ~ pokemons:", pokemons);
 
 	const extractNumberFromUrl = (url) => {
 		const regex = /\/pokemon\/(\d+)\//;
@@ -19,6 +19,9 @@ const PokemonList = ({ pokemons = Array(10).fill("") }) => {
 						key={pokemon.name || index} // Usa index como fallback si name no está definido
 						name={pokemon.name || `Pokemon ${index + 1}`}
 						number={numeroPokemon}
+						image={pokemon.sprites?.other?.["official-artwork"]?.front_default}
+						// image={pokemon.sprites?.front_default}
+						types={pokemon.types}
 					/>
 				);
 			})}
