@@ -1,4 +1,4 @@
-import { SET_POKEMONS } from "../actions/types";
+import { SET_LOADING, SET_POKEMONS } from "../actions/types";
 
 /*
 El reducer es una función que recibe el estado actual y una acción, y devuelve el nuevo estado.
@@ -10,6 +10,7 @@ Si no, devuelve el estado sin cambios.
 // Este es el estado, y el estado inicial
 const initialState = {
     pokemons: [],
+    loading: false,
 };
 
 export const pokemonsReducer = (state = initialState, actions) => {
@@ -18,6 +19,11 @@ export const pokemonsReducer = (state = initialState, actions) => {
             return {
                 ...state,
                 pokemons: actions.payload,
+            };
+        case SET_LOADING:
+            return {
+                ...state,
+                loading: actions.payload,
             };
         default:
             return state;
