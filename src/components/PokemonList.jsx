@@ -22,6 +22,8 @@ const PokemonList = ({ pokemons = Array(10).fill("") }) => {
 						image={pokemon.sprites?.other?.["official-artwork"]?.front_default}
 						// image={pokemon.sprites?.front_default}
 						types={pokemon.types}
+						id={pokemon.id}
+						favorite={pokemon.favorite}
 					/>
 				);
 			})}
