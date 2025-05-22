@@ -12,8 +12,9 @@ import { getPokemonsWithDetails, setLoading, setPokemons } from "./actions/index
 function App() {
 	// const [pokemons, setPokemons] = useState([]);
 
-	const pokemons = useSelector((state) => state.pokemons); // accede al estado de redux, en este caso a los pokemons
-	const loading = useSelector((state) => state.loading);
+	const pokemons = useSelector((state) => state.get('pokemons')).toJS(); // accede al estado de redux, en este caso a los pokemons
+	// const loading = useSelector((state) => state.loading);
+	const loading = false;
 	const dispatch = useDispatch(); // permite despachar acciones a redux
 
 	useEffect(() => {
