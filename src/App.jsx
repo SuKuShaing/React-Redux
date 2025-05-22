@@ -13,8 +13,7 @@ function App() {
 	// const [pokemons, setPokemons] = useState([]);
 
 	const pokemons = useSelector((state) => state.get('pokemons')).toJS(); // accede al estado de redux, en este caso a los pokemons
-	// const loading = useSelector((state) => state.loading);
-	const loading = false;
+	const loading = useSelector((state) => state.get('loading'));
 	const dispatch = useDispatch(); // permite despachar acciones a redux
 
 	useEffect(() => {
