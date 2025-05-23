@@ -11,6 +11,7 @@ Si no, devuelve el estado sin cambios.
 // Este es el estado, y el estado inicial
 const initialState = fromJS({
 	pokemons: [],
+	loading: false,
 });
 
 export const pokemonsReducer = (state = initialState, actions) => {
@@ -21,6 +22,12 @@ export const pokemonsReducer = (state = initialState, actions) => {
 			// 	pokemons: actions.payload,
 			// };
 			return state.setIn(["pokemons"], fromJS(actions.payload)); // se utilizan los métodos de immutable.js para actualizar el estado, sí pokemons tuviera un objetos "list" por ejemplo, se accedería así ["pokemons", "list"], se colocan los niveles de profundidad que se necesiten
+		case SET_LOADING:
+			// return {
+			// 	...state,
+			// 	loading: actions.payload,
+			// };
+			return state.setIn(["loading"], actions.payload); // se utiliza el método de immutable.js para actualizar el estado
 		case SET_FAVORITES:
 			const currentPokemonIndex = state.get('pokemons').findIndex(  // Encuentra el índice del pokemon que se quiere modificar
 				(pokemon) => pokemon.get('id') === actions.payload.id

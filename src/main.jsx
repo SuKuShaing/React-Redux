@@ -1,7 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
-import { pokemonsReducer } from "./reducers/pokemons.js";
 import {
 	applyMiddleware,
 	compose,
@@ -10,6 +9,8 @@ import {
 import { thunk } from "redux-thunk";
 import { featuring, logger } from "./middlewares/index.js";
 import App from "./App.jsx";
+import rootReducer from "./reducers/rootReducer.js";
+import { Immutable } from "immutable";
 
 const composeAlt = window.__REDUX_DEVTOOLS_EXTENSION_compose__ || compose;
 
@@ -20,7 +21,7 @@ const composedEnhancer = composeAlt(
 );
 
 const store = createStore(
-	pokemonsReducer,
+	rootReducer,
 	// enhancers
 	composedEnhancer
 ); // crea el store de redux
