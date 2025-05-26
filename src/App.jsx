@@ -6,24 +6,16 @@ import PokemonList from "./components/PokemonList";
 import logo from "./statics/logo.svg";
 
 import "./App.css";
-import { getPokemonDetails, getPokemons } from "./api/index.js";
-import { getPokemonsWithDetails, setLoading, setPokemons } from "./actions/index.js";
+import { fetchPokemonsWithDetails } from "./slices/dataSlice.js";
 
 function App() {
 
-	const pokemons = useSelector((state) => state.getIn(['data', 'pokemons'], shallowEqual)).toJS(); // accede al estado de redux, en este caso a los pokemons
-	const loading = useSelector((state) => state.getIn(['ui', 'loading']));
+	const pokemons = useSelector((state) => state.data.pokemons, shallowEqual); 
+	const loading = useSelector((state) => state.data.loading);
 	const dispatch = useDispatch(); // permite despachar acciones a redux
 
 	useEffect(() => {
-		const fetchPokemons = async () => {
-			dispatch(setLoading(true));
-			const pokemonsRes = await getPokemons();
-			dispatch(getPokemonsWithDetails(pokemonsRes)); // despacha la acción setPokemons con los pokemons obtenidos
-			dispatch(setLoading(false));
-		};
-
-		fetchPokemons();
+		dispatch(fetchPokemonsWithDetails()); // despacha la acción para obtener los pokemons con sus detalles
 	}, []); // cuando se monta el componente, se ejecuta la función fetchPokemons
 
 	return (

@@ -10,7 +10,6 @@ import { thunk } from "redux-thunk";
 import { featuring, logger } from "./middlewares/index.js";
 import App from "./App.jsx";
 import rootReducer from "./reducers/rootReducer.js";
-import { Immutable } from "immutable";
 
 const composeAlt = window.__REDUX_DEVTOOLS_EXTENSION_compose__ || compose;
 

@@ -3,7 +3,7 @@ import { Card } from "antd";
 import Meta from "antd/lib/card/Meta";
 import StarButton from "./StarButton";
 import { useDispatch } from "react-redux";
-import { setFavorites } from "../actions";
+import { setFavorites } from "../slices/dataSlice.js";
 
 const capitalize = (str) =>
 	str ? str.charAt(0).toUpperCase() + str.slice(1) : "";
